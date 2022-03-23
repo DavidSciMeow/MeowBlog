@@ -1,0 +1,77 @@
+﻿@{
+    Layout = "_Layout";
+}
+<body>
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="align-self-center" style="width:80%;">
+                <form>
+                    <div class="form-group">
+                        <label for="title">Title:</label>
+                        <input type="text" class="form-control" placeholder="enter your title here" id="name">
+                        <label for="desc">Desc:</label>
+                        <input type="text" class="form-control" placeholder="enter your description here" id="desc">
+                        <label for="body">Body:</label>
+						<textarea class="form-control" cols="20" rows="10" placeholder="enter the main body here" id="body"></textarea>
+                    </div>
+                    <button id="send" type="submit" class="btn btn-primary">Send</button>
+                    <button id="reset" type="reset" class="btn btn-primary">clear</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+var but = document.getElementById("send");
+var reset = document.getElementById("reset");
+but.onclick = function(){
+    var name = document.getElementById("name").value.replace(new RegExp("\"","g"),"\\\"");
+    var desc = document.getElementById("desc").value.replace(new RegExp("\"","g"),"\\\"");
+    var body = document.getElementById("body").value.replace(new RegExp("\"","g"),"\\\"");
+    ajax("POST","/Blog/Insert",'{"name":"'+name+'","desc":"'+desc+'","body":"'+body+'"}'
+	,3000,function(r){
+		if(r.responseText == 0){
+			alert("发布成功");
+		}else{
+			alert("发布失败");
+		}
+	});
+	reset.click();
+	return false;
+}
+function ajax(type, url, str, timeout, success, error) {
+	var xmlhttp, timer;
+	if (window.XMLHttpRequest) { 
+		xmlhttp = new XMLHttpRequest();
+	} else { 
+		xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	if(type == "GET"){
+		xmlhttp.open(type, url + "?" + str, true);
+		xmlhttp.send();
+	}
+	else{
+		xmlhttp.open(type, url, true);
+		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xmlhttp.send(str);
+	}
+	xmlhttp.onreadystatechange = function(ev2) {
+		if (xmlhttp.readyState === 4) {
+			clearInterval(timer);
+			if (xmlhttp.status >= 200 && xmlhttp.status < 300 || xmlhttp.status == 304) {
+				success(xmlhttp);
+			} else {
+				error(xmlhttp);
+			}
+		}
+	}
+	if(timeout){
+		timer = setInterval(function(){
+			console.log("请求超时")
+			xmlhttp.abort();
+			clearInterval(timer);
+		}, timeout);
+	}
+}
+</script>
+

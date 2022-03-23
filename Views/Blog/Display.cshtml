@@ -1,0 +1,37 @@
+﻿@{
+	var bm = ViewData["blogitem"] as BlogModel;
+	ViewData["title"] = @bm?.name;
+}
+<body>
+	<div class="container">
+			@if(ViewData["blogitem"] != null)
+			{
+				if (Context.Session.IsRoot())
+				{
+					<div class="row">
+						<a href="/Blog/Delete/@bm?.id" class="btn btn-primary col-1">删除本文</a>	
+					</div>
+				}
+				<div class="row">
+					<div class="col-12 text-center">
+						<h1>@bm?.name </h1>
+						<h3>@bm?.description</h3>
+						<h4>发布于 [@bm?.publish]</h4>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12">
+						<div class="container" style="word-break:break-all;">
+							<!--Blog inner-->
+							@Html.Raw(bm?.Text);
+						</div>
+					</div>
+				</div>
+			}
+			else
+			{
+				<h1> Blog Null - Possibly Be(ing) Deleted </h1>
+				<h1> 不存在此博客, 可能已经删除 </h1>
+			}
+	</div>
+</body>

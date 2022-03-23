@@ -1,0 +1,7 @@
+﻿@using System.IO;
+@using System;
+@{
+	Layout = "_Layout";
+    ViewData["Title"] = MeowBlog.ProgramProperties.IndexName ?? "Home";
+}
+@Html.Raw(ViewData["innerHtml"]);

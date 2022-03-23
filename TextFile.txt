@@ -1,0 +1,16 @@
+﻿sessionkeys:
+[isRoot:int 0,loginTime]
+
+ApiReturns:
+[result:int,errs:strings]
+
+staticFiles:
+blogs/zlist.bloglist
+
+postblogreqjson:
+{
+"name":string,
+"desc":string,
+"visable":string, // yes, no
+"text":string,
+}
