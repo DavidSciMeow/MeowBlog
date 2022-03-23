@@ -9,7 +9,7 @@
   "Use_DMC": "yes", //DMC为内存缓冲模式,若您的内存在运行时常常处于不足状态,建议关闭
   "Use_ResponseCache": "yes", //反传(回送)缓冲可能会使用对查表等进行操作
   "Use_ResponseCompression": "yes", //反传(回送)压缩可能执行Gzip等节省网络带宽,但是可能会增加CPU负载
-  "LogLevel": 2, //日志等级 -1:all 0:debug 1:info 2:warn 3:error 4+:none
+  "LogLevel": 0, //日志等级 -1:all 0:debug 1:info 2:warn 3:error 4+:none
   /*
     博客程序设置
     以下行属于博客的设置配置,您可以在程序第一次运行时更改,

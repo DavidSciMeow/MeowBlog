@@ -158,6 +158,30 @@ namespace MeowBlog.Models
         /// </summary>
         /// <returns></returns>
         public static Task Backup() => File.WriteAllTextAsync(Path.Combine(VPath, "zlist.bloglist"), Newtonsoft.Json.JsonConvert.SerializeObject(Blogs));
+        /// <summary>
+        /// 任务读取模式
+        /// </summary>
+        /// <returns></returns>
+        public static Task SyncUp()
+        {
+            var d = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, (string, bool, DateTime)>>(File.ReadAllText(Path.Combine(VPath, "zlist.bloglist")));
+            if(d is not null)
+            {
+                Blogs = d;
+                $"SyncComplete".ToLog(1);
+                return Task.CompletedTask;
+            }
+            else
+            {
+                $"SyncErr".ToLog(3);
+                return Task.CompletedTask;
+            }
+        }
+        /// <summary>
+        /// 根据Context判断是否为博主
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
         public static bool IsRoot(this ISession s) => 0 == s.GetInt32("isRoot");
     }
 }

@@ -83,11 +83,7 @@ namespace MeowBlog
             {
                 if (_config.EventId == 0 || _config.EventId == eventId.Id)
                 {
-                    var color = Console.ForegroundColor;
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine(
-                        $"[MeowBlog] {logLevel} [{eventId.Id}] {_name} \n- {formatter(state, exception??new Exception())}");
-                    Console.ForegroundColor = color;
+                    $"[{eventId.Id}] {_name} \n- {formatter(state, exception ?? new Exception())}".ToLog((int)logLevel-1);
                 }
             }
         }

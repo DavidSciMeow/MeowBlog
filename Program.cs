@@ -84,8 +84,7 @@ app.UseStaticFiles(); //访问wwwroot文件夹
 app.UseRouting(); //启用路由支持
 app.UseAuthorization(); //使用认证
 app.UseSession(); //使用会话标识符
-//app.MapDefaultControllerRoute(); //默认操作路由
-app.MapControllerRoute("Default", "{controller}/{action}");
+app.MapControllerRoute("Default", "{controller=Home}/{action=Index}");
 app.MapControllerRoute("BlogDefault", "{controller}/{action}/{id}");
 
 if (!string.IsNullOrEmpty(MeowBlog.ProgramProperties.BaseUrl))
