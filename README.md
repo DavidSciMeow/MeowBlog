@@ -1,5 +1,5 @@
 MeowBlog  
-![](https://github.com/DavidSciMeow/MeowBlog/gitstaticuse/Title.png)  
+![如果您没有看到本图,您应该尝试翻墙查看本库](https://github.com/DavidSciMeow/MeowBlog/blob/master/_gitstaticuse/Title.png)  
 ### 一个 `极其` `轻量化` 的 Asp `(.net6)` 博客管理端;  
 
 ## 1.简介
