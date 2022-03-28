@@ -178,6 +178,35 @@ namespace MeowBlog.Models
             }
         }
         /// <summary>
+        /// 强制同步文件夹内的数据
+        /// </summary>
+        /// <returns></returns>
+        public static Task ForceSyncUp()
+        {
+            var fls = new DirectoryInfo(Path.Combine(VPath)).GetFiles();
+            foreach (var f in fls)
+            {
+                if (f.Name.EndsWith(".blog"))//是博客
+                {
+                    var rf = File.ReadAllText(f.FullName);//读
+                    var fx = Newtonsoft.Json.JsonConvert.DeserializeObject<BlogModel>(rf);//转
+                    if (fx is not null)//非空
+                    {
+                        var fxt = Blogs.TryAdd(fx.id, (fx.name, fx.isVisiable, fx.publish));//加
+                        if (fxt)//是否存在
+                        {
+                            $"{fx.id} Blog have already sync into dict.".ToLog(1);//不存在,成功添加
+                        }
+                        else
+                        {
+                            $"{fx.id} Blog have already exist into dict.".ToLog(2);//存在,不得重复
+                        }
+                    }
+                }
+            }
+            return Task.CompletedTask;
+        }
+        /// <summary>
         /// 根据Context判断是否为博主
         /// </summary>
         /// <param name="s"></param>

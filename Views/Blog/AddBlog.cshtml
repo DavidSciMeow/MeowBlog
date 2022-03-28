@@ -1,5 +1,7 @@
 ﻿@{
     Layout = "_Layout";
+    ViewData["title"] = "Add Blog";
+    ViewData["Header"] = "<link rel=\"stylesheet\" href=\"~/css/github-mdcss.css\" asp-append-version=\"true\" />";
 }
 <body>
 	<div class="container">
@@ -11,8 +13,8 @@
                         <input type="text" class="form-control" placeholder="enter your title here" id="name">
                         <label for="desc">Desc:</label>
                         <input type="text" class="form-control" placeholder="enter your description here" id="desc">
-                        <label for="body">Body:</label>
-						<textarea class="form-control" cols="20" rows="10" placeholder="enter the main body here" id="body"></textarea>
+                        <label for="body">Body:(Markdown)</label>
+						<textarea class="form-control markdown-body" cols="20" rows="10" placeholder="enter the main body here" id="body"></textarea>
                     </div>
                     <button id="send" type="submit" class="btn btn-primary">Send</button>
                     <button id="reset" type="reset" class="btn btn-primary">clear</button>
@@ -38,40 +40,6 @@ but.onclick = function(){
 	});
 	reset.click();
 	return false;
-}
-function ajax(type, url, str, timeout, success, error) {
-	var xmlhttp, timer;
-	if (window.XMLHttpRequest) { 
-		xmlhttp = new XMLHttpRequest();
-	} else { 
-		xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-	}
-	if(type == "GET"){
-		xmlhttp.open(type, url + "?" + str, true);
-		xmlhttp.send();
-	}
-	else{
-		xmlhttp.open(type, url, true);
-		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		xmlhttp.send(str);
-	}
-	xmlhttp.onreadystatechange = function(ev2) {
-		if (xmlhttp.readyState === 4) {
-			clearInterval(timer);
-			if (xmlhttp.status >= 200 && xmlhttp.status < 300 || xmlhttp.status == 304) {
-				success(xmlhttp);
-			} else {
-				error(xmlhttp);
-			}
-		}
-	}
-	if(timeout){
-		timer = setInterval(function(){
-			console.log("请求超时")
-			xmlhttp.abort();
-			clearInterval(timer);
-		}, timeout);
-	}
 }
 </script>
 

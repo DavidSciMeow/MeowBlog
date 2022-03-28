@@ -6,6 +6,11 @@
     <title>@ViewData["Title"] - @(MeowBlog.ProgramProperties.BlogName ??"MeowBlog")</title>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link href="https://cdn.staticfile.org/twitter-bootstrap/@(MeowBlog.ProgramProperties.BootstrapVersion??"4.0.0")/css/bootstrap.min.css" rel="stylesheet">
+    @Html.Raw(ViewData["Header"])
+
+    <script src="https://cdn.staticfile.org/jquery/@(MeowBlog.ProgramProperties.JQueryVersion??"3.1.1")/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/@(MeowBlog.ProgramProperties.BootstrapVersion??"4.0.0")/js/bootstrap.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
 </head>
 
 <body class="d-flex flex-column h-100">
@@ -51,20 +56,13 @@
             </div>
         </nav>
     </header>
-
     <!-- Body Render-->
     @RenderBody();
-
     <!-- footer Render -->
     <footer class="border-top footer text-muted mt-auto py-3">
         <div class="container">
             &copy; @DateTime.Now.Year - Powered by MeowBlog
         </div>
     </footer>
-
-    <!-- Script Render -->
-    <script src="https://cdn.staticfile.org/jquery/@(MeowBlog.ProgramProperties.JQueryVersion??"3.1.1")/jquery.min.js"></script>
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/@(MeowBlog.ProgramProperties.BootstrapVersion??"4.0.0")/js/bootstrap.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
 </body>
 </html>
