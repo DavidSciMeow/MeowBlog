@@ -49,7 +49,7 @@ namespace MeowBlog
             {
                 try //尝试加载文件, 若不存在则执行初始化
                 {
-                    blog = new ConfigurationBuilder().AddJsonFile("./Properties/blog.json").Build(); //设置文件目录
+                    blog = new ConfigurationBuilder().AddJsonFile("./blog.json").Build(); //设置文件目录
                     BaseUrl = blog["BaseListen"];
                     BlogPath = blog["BlogPath"];
                     var pblogs = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", BlogPath ?? "blogs/");

@@ -1,7 +1,7 @@
 ﻿@{
     Layout = "_Layout";
     ViewData["title"] = "Add Blog";
-    ViewData["Header"] = "<link rel=\"stylesheet\" href=\"~/css/github-mdcss.css\" asp-append-version=\"true\" />";
+    ViewData["Header"] = "<link rel=\"stylesheet\" href=\"~/css/github-mdcss.css\" />";
 }
 <body>
 	<div class="container">
@@ -30,8 +30,9 @@ but.onclick = function(){
     var name = document.getElementById("name").value.replace(new RegExp("\"","g"),"\\\"");
     var desc = document.getElementById("desc").value.replace(new RegExp("\"","g"),"\\\"");
     var body = document.getElementById("body").value.replace(new RegExp("\"","g"),"\\\"");
-    ajax("POST","/Blog/Insert",'{"name":"'+name+'","desc":"'+desc+'","body":"'+body+'"}'
-	,3000,function(r){
+    ajax("POST","/Blog/Insert",
+    '{"name":"'+name+'","desc":"'+desc+'","body":"'+body+'"}',
+    3000,function(r){
 		if(r.responseText == 0){
 			alert("发布成功");
 		}else{

@@ -1,6 +1,10 @@
 ![如果您没有看到本图,您应该尝试翻墙查看本库](https://github.com/DavidSciMeow/MeowBlog/blob/master/_gitstaticuse/Title.png)  
 ### 一个 `极其` `轻量化` 的 Asp `(.net6)` 博客管理端;  
 
+## 0.最新更新
+
+将 ./Properties/blog.json 移动至 ./blog.json (程序根目录),方便查找.
+
 ## 1.简介
 
 ```csharp
