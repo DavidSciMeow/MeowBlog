@@ -26,7 +26,7 @@
     var but = document.getElementById("login");
     but.onclick = function(){
         var pass = document.getElementById("pass").value;
-        ajax("POST","/Home/ApiLogin","{\"pass\":"+pass+"}",3000,function(r){
+        ajax("POST","/Home/ApiLogin","{\"pass\":\""+pass+"\"}",3000,function(r){
 		    var k = r.responseText.split(":");
 		    if(k[0] == 0){
                 self.location=document.referrer;

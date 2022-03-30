@@ -22,6 +22,10 @@ namespace MeowBlog.Controllers
             return View();
         }
         public IActionResult Login() => View();
+        /// <summary>
+        /// logindettect->
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult ApiLogin()
         {

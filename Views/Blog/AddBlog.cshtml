@@ -1,46 +1,63 @@
 ﻿@{
-    Layout = "_Layout";
-    ViewData["title"] = "Add Blog";
-    ViewData["Header"] = "<link rel=\"stylesheet\" href=\"~/css/github-mdcss.css\" />";
+	Layout = "_Layout";
+	ViewData["title"] = "Add Blog";
 }
 <body>
-	<div class="container">
-		<div class="row justify-content-center">
-			<div class="align-self-center" style="width:80%;">
-                <form>
-                    <div class="form-group">
-                        <label for="title">Title:</label>
-                        <input type="text" class="form-control" placeholder="enter your title here" id="name">
-                        <label for="desc">Desc:</label>
-                        <input type="text" class="form-control" placeholder="enter your description here" id="desc">
-                        <label for="body">Body:(Markdown)</label>
-						<textarea class="form-control markdown-body" cols="20" rows="10" placeholder="enter the main body here" id="body"></textarea>
-                    </div>
-                    <button id="send" type="submit" class="btn btn-primary">Send</button>
-                    <button id="reset" type="reset" class="btn btn-primary">clear</button>
-                </form>
+    <link rel="stylesheet" href="/editormd/lib/editormd.css" />
+	<div class="container justify-content-center" style="height:70%;">
+		<form class="row align-item-center" style="height:100%;">
+            <div class="btns" style="width:555px;">
+                <button id="fullscreen-btn">Fullscreen (Press ESC cancel)</button>
+                <button id="show-toolbar-btn">Show toolbar</button>
+                <button id="close-toolbar-btn">Hide toolbar</button>
+                <button id="send" type="submit">Send</button>
+                <button id="reset" type="reset" >Reset</button>
             </div>
-        </div>
+            <input type="text" class="form-control col-12" placeholder="Title Here" id="name" />
+            <input type="text" class="form-control col-12" placeholder="Description Here" id="desc" />
+            <div id="editor" class="col-12"></div>
+        </form>
     </div>
+
 </body>
+<script src="/editormd/lib/editormd.js"></script>
 <script>
-var but = document.getElementById("send");
-var reset = document.getElementById("reset");
-but.onclick = function(){
-    var name = document.getElementById("name").value.replace(new RegExp("\"","g"),"\\\"");
-    var desc = document.getElementById("desc").value.replace(new RegExp("\"","g"),"\\\"");
-    var body = document.getElementById("body").value.replace(new RegExp("\"","g"),"\\\"");
-    ajax("POST","/Blog/Insert",
-    '{"name":"'+name+'","desc":"'+desc+'","body":"'+body+'"}',
-    3000,function(r){
-		if(r.responseText == 0){
-			alert("发布成功");
-		}else{
-			alert("发布失败");
-		}
-	});
-	reset.click();
-	return false;
-}
+    $(function() {
+        editor = editormd("editor", {
+            path   : "/editormd/lib/",
+            saveHTMLToTextarea : true,
+            searchReplace : true,
+            htmlDecode : "style,script,iframe|on*", 
+            tex : true,
+        });
+        $("#fullscreen-btn").bind('click', function() {
+            editor.fullscreen();
+        });
+        $("#show-toolbar-btn").bind('click', function() {
+            editor.showToolbar();
+        });
+        $("#close-toolbar-btn").bind('click', function() {
+            editor.hideToolbar();
+        });
+        $("#trs").bind('click', function() {
+            console.log(editor.getMarkdown());
+            alert(editor.getMarkdown());
+        });
+        $("#send").bind('click', function(){
+            var name = document.getElementById("name").value.replace(new RegExp("\"","g"),"\\\"");
+		    var desc = document.getElementById("desc").value.replace(new RegExp("\"","g"),"\\\"");
+		    var body = encodeURIComponent(editor.getMarkdown());
+		    ajax("POST","/Blog/Insert",
+		    '{"name":"'+name+'","desc":"'+desc+'","body":"'+body+'"}',
+		    3000,function(r){
+			    if(r.responseText == 0){
+				    alert("发布成功");
+			    }else{
+				    alert("发布失败");
+			    }
+		    });
+		    return false;
+        })
+    });
 </script>
 

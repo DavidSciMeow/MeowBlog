@@ -35,7 +35,7 @@ namespace MeowBlog.Controllers
                     var name = jo["name"]?.ToString() ?? "";
                     var desc = jo["desc"]?.ToString() ?? "";
                     var visa = "yes".Equals(jo["isVisable"]?.ToString() ?? "yes");
-                    var text = jo["body"]?.ToString() ?? "";
+                    var text = (jo["body"]?.ToString() ?? "");
                     if (!string.IsNullOrEmpty(text))
                     {
                         BlogModel bm = new() {id=Guid.NewGuid().ToString().Replace("-",""),name = name,description=desc,isVisiable=visa,Text=text,publish=DateTime.Now };
