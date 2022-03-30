@@ -3,12 +3,15 @@
 
 ## 0.最新更新
 
-将 ./Properties/blog.json 移动至 ./blog.json (程序根目录),方便查找.
+//欢迎各位前端工程师来设计页面  
+2022 03 18 将 ./Properties/blog.json 移动至 ./blog.json (程序根目录),方便查找.  
+2022 03 20 将 dll的MarkdownParser更改成js版本.并且适配了markdown编辑器
 
 ## 1.简介
 
 ```csharp
 List<String> 优点 = new(){
+	"前端使用了Markdown富文本解析器,增进了您的编写体验."
 	"运行简单,轻量化不需任何其他组件.",
 	"适配操作于Markdown语法的解析.",
 	"支持内函数重写.",
