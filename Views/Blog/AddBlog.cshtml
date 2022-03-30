@@ -6,13 +6,8 @@
     <link rel="stylesheet" href="/editormd/lib/editormd.css" />
 	<div class="container justify-content-center" style="height:70%;">
 		<form class="row align-item-center" style="height:100%;">
-            <div class="btns" style="width:555px;">
-                <button id="fullscreen-btn">Fullscreen (Press ESC cancel)</button>
-                <button id="show-toolbar-btn">Show toolbar</button>
-                <button id="close-toolbar-btn">Hide toolbar</button>
-                <button id="send" type="submit">Send</button>
-                <button id="reset" type="reset" >Reset</button>
-            </div>
+            <button id="send" class="col-2 btn btn-primary" type="submit">Send</button>
+            <button id="reset" class="col-2 btn btn-primary" type="reset" >Reset</button>
             <input type="text" class="form-control col-12" placeholder="Title Here" id="name" />
             <input type="text" class="form-control col-12" placeholder="Description Here" id="desc" />
             <div id="editor" class="col-12"></div>
@@ -29,15 +24,6 @@
             searchReplace : true,
             htmlDecode : "style,script,iframe|on*", 
             tex : true,
-        });
-        $("#fullscreen-btn").bind('click', function() {
-            editor.fullscreen();
-        });
-        $("#show-toolbar-btn").bind('click', function() {
-            editor.showToolbar();
-        });
-        $("#close-toolbar-btn").bind('click', function() {
-            editor.hideToolbar();
         });
         $("#trs").bind('click', function() {
             console.log(editor.getMarkdown());
