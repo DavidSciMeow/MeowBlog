@@ -6,8 +6,15 @@ using System.Text;
 
 namespace MeowBlog.Controllers
 {
+    /// <summary>
+    /// 网页相关控制器 C/
+    /// </summary>
     public class HomeController : Controller
     {
+        /// <summary>
+        /// 首页
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Index()
         {
 
@@ -21,9 +28,13 @@ namespace MeowBlog.Controllers
             }
             return View();
         }
+        /// <summary>
+        /// 登入展示页
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Login() => View();
         /// <summary>
-        /// logindettect->
+        /// 登入
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -50,11 +61,19 @@ namespace MeowBlog.Controllers
                 return Content($"-1:{ex.Message}");
             }
         }
+        /// <summary>
+        /// 登出
+        /// </summary>
+        /// <returns></returns>
         public IActionResult ApiLogout()
         {
             Request.HttpContext.Session.Clear();
             return Redirect("/Home/Index");
         }
+        /// <summary>
+        /// 错误展示
+        /// </summary>
+        /// <returns></returns>
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

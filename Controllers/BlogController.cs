@@ -5,9 +5,21 @@ using System.Text;
 
 namespace MeowBlog.Controllers
 {
+    /// <summary>
+    /// 博客控制器 C/
+    /// </summary>
     public class BlogController : Controller
     {
+        /// <summary>
+        /// 主页
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Index() => View();
+        /// <summary>
+        /// 显示某个博客
+        /// </summary>
+        /// <param name="id">Uid</param>
+        /// <returns></returns>
         public IActionResult Display(string id)
 		{
 			try
@@ -20,6 +32,10 @@ namespace MeowBlog.Controllers
             }
             return View();
         }
+        /// <summary>
+        /// 插入一个博客
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Insert()
         {
@@ -61,6 +77,11 @@ namespace MeowBlog.Controllers
                 return Json(new { result = 2, errs = "No session indecated your blog id -> request process stops" });
             }
         }
+        /// <summary>
+        /// 删除一个博客
+        /// </summary>
+        /// <param name="id">博客id</param>
+        /// <returns></returns>
         public IActionResult Delete(string id)
         {
             if (Request.HttpContext.Session.IsRoot())//session验证
@@ -73,6 +94,10 @@ namespace MeowBlog.Controllers
                 return Json(new { errs = "No session indecated you're administrator -> request process stops" });
             }
         }
+        /// <summary>
+        /// 添加一个博客
+        /// </summary>
+        /// <returns></returns>
         public IActionResult AddBlog()
         {
             if (Request.HttpContext.Session.GetInt32("isRoot") == 0)
