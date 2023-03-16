@@ -1,0 +1,50 @@
+﻿@{
+	var bm = ViewData["blogitem"] as BlogModel;
+	ViewData["title"] = @bm?.name;
+}
+<script src="/editormd/lib/marked.min.js"></script>
+<script src="/editormd/lib/prettify.min.js"></script>
+<link rel="stylesheet" href="/editormd/lib/editormd.css" />
+<div class="container">
+	@if (ViewData["blogitem"] != null)
+	{
+		if (Context.Session.IsRoot())
+		{
+			<div class="row">
+				<a href="/Blog/Delete/@bm?.id" class="btn btn-primary col-1">删除本文</a>
+			</div>
+		}
+		<div class="row">
+			<div class="col-12 text-center">
+				<h1>@bm?.name</h1>
+				<h6>P/A:[ @bm?.publish ]</h6>
+				<h3>@bm?.description</h3>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<div class="container" style="word-break:break-all;">
+					<div id="ev"></div>
+				</div>
+			</div>
+		</div>
+	}
+	else
+	{
+		<h1> Blog Null - Possibly Be(ing) Deleted </h1>
+		<h1> 不存在此博客, 可能已经删除 </h1>
+	}
+</div>
+<script src="/editormd/lib/editormd.js"></script>
+<script type="text/javascript">
+	$(function() {
+		srf = decodeURIComponent("@Html.Raw(bm?.Text ?? "")");
+		ev = editormd.markdownToHTML("ev", {
+			markdown :	srf,
+			htmlDecode      : "style,script,iframe", 
+			emoji           : true,
+			taskList        : true,
+			tex             : true,
+		});
+	});
+</script>

@@ -1,0 +1,42 @@
+{
+  "?base": "程序配置,以下行属于程序配置逻辑,不建议进行更改,但如果您知道并且了解逻辑,您可以进行更改",
+
+  "?BaseListen": "监听地址",
+  "BaseListen": "https://*:15000",
+  "?Use_HSTS": "HSTS模式默认值为365天(一年)",
+  "Use_HSTS": "yes",
+  "?Use_DMC": "DMC为内存缓冲模式,若您的内存在运行时常常处于不足状态,建议关闭",
+  "Use_DMC": "yes",
+  "?Use_ResponseCache": "反传(回送)缓冲可能会使用对查表等进行操作",
+  "Use_ResponseCache": "yes",
+  "?Use_ResponseCompression": "反传(回送)压缩可能执行Gzip等节省网络带宽,但是可能会增加CPU负载",
+  "Use_ResponseCompression": "yes",
+  "?LogLevel": "日志等级 -1:all 0:debug 1:info 2:warn 3:error 4+:none",
+  "LogLevel": 0,
+
+  "?blogset": "博客程序设置,以下行属于博客的设置配置,您可以在程序第一次运行时更改,但不允许程序运行一段时间后进行更改,除非您知道逻辑或者如何恢复",
+
+  "?BlogPath": "博客存储位置",
+  "BlogPath": "./blogs/",
+  "?StorageType": "文件模式 0:XML文件 (当前并未含有其他模式)",
+  "StorageType": 0,
+  "?Password": "博主密码",
+  "Password": "123456",
+
+  "?pageset": "前端库版本,基于CDN的获取 默认CDN => cdn.staticfile.org *",
+  "?BootstrapVersion": "bootstrap版本",
+  "BootstrapVersion": "4.0.0",
+  "?JqueryVersion": "Jquery版本",
+  "JqueryVersion": "3.1.1",
+
+  "?blogindexstyle": "以下行为主页样式模式文件",
+
+  "?BlogName": "你的博客名",
+  "BlogName": "MeowBlog",
+  "?InnerIndexLayoutPage": "主页Body内含样式",
+  "InnerIndexLayoutPage": "./Basic/IndexLayout.html",
+  "?IndexName": "主页显示名",
+  "IndexName": "Home",
+  "?IndexNavPage": "自定义导航栏内部(默认写法为bootstrap4模式)",
+  "IndexNavPage": "./Basic/IndexNav.html"
+}

@@ -1,0 +1,45 @@
+﻿@using System.IO;
+@{
+	Layout = "_Layout";
+	ViewData["Title"] = "BlogList";
+	var list = BlogManagement.Blogs; //文件列表
+	var session_is_root = Context.Session.IsRoot(); //只有博主可以看
+	if (ViewData?["sc"]?.ToString() == "1")
+	{
+		<script>
+			alert("博客发送成功");
+		</script>
+	}
+}
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<div class="container">
+				<div class="list-group">
+					@if(list != null)
+					{
+						if(list.LongCount()>0)
+						{
+							foreach(var i in list)
+							{
+								if(i.Value._isVisiable || session_is_root)
+								{
+									<a href="/Blog/Display/@i.Key" class="list-group-item list-group-item-action" style="width:500px;">@i.Value.name</a>
+								}
+							}
+						}
+						else
+						{
+							<a href="#" class="list-group-item list-group-item-action"> 还没有发布任何内容 ~ </a>
+						}
+					}
+					else
+					{
+						$"blogs init errs".ToLog(3);
+						<a href="#" class="list-group-item list-group-item-action">*博客初始化错误*</a>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

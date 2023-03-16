@@ -1,0 +1,41 @@
+﻿@{
+    Layout = "_layout";
+	ViewData["Title"] = "Login";
+	if (Context.Session.IsRoot())
+	{
+		<script>
+			self.location=document.referrer;
+		</script>
+	}
+}
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="align-self-center" style="width:50%;">
+			<div class="text-center" id="reason"> -- </div>
+            <form>
+                <div class="form-group">
+                    <label for="pwd">Password:</label>
+                    <input type="password" class="form-control" placeholder="Enter Your Configuation Password" id="pass">
+                </div>
+                <button id="login" type="submit" class="btn btn-primary">Login</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    var but = document.getElementById("login");
+    but.onclick = function(){
+        var pass = document.getElementById("pass").value;
+        ajax("POST","/Home/ApiLogin","{\"pass\":\""+pass+"\"}",3000,function(r){
+		    var k = r.responseText.split(":");
+		    if(k[0] == 0){
+                self.location=document.referrer;
+            }else if(k[0] == 1){
+                alert(k[1]);
+            }else if(k[0] == -1){
+			    alert(k[1]);
+            }
+	    });
+	    return false;
+    }
+</script>

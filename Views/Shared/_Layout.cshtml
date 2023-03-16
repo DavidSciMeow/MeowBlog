@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en" class="h-100"> <!-- Language -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - @(MeowBlog.ProgramProperties.BlogName ??"MeowBlog")</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/@(MeowBlog.ProgramProperties.BootstrapVersion??"4.0.0")/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/jquery/@(MeowBlog.ProgramProperties.JQueryVersion??"3.1.1")/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/@(MeowBlog.ProgramProperties.BootstrapVersion??"4.0.0")/js/bootstrap.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</head>
+
+<body class="d-flex flex-column h-100">
+    <!-- Nav Render-->
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">@(MeowBlog.ProgramProperties.BlogName ??"MeowBlog")</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+	                <ul class="navbar-nav flex-grow-1">
+                        @try
+                        {   
+	                        @Html.Raw(File.ReadAllText(System.IO.Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", MeowBlog.ProgramProperties.IndexNavPage ?? "Basic/IndexNav.html")));
+                        }
+                        catch
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="/blog/">博客</a>
+                            </li>
+                        }
+                    </ul>
+                    <ul class="navbar-nav flex-grow-1 ml-auto">
+                        @if (Context.Session.GetInt32("isRoot") == 0)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="/Blog/AddBlog">添加博客</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="/Home/ApiLogout">退出登陆</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="/Home/Login">博主登陆</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- Body Render-->
+    @RenderBody()
+    <!-- footer Render -->
+    <footer class="border-top footer text-muted mt-auto py-3">
+        <div class="container">
+            &copy; @DateTime.Now.Year - Powered by MeowBlog
+        </div>
+    </footer>
+</body>
+</html>

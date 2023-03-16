@@ -1,0 +1,48 @@
+﻿@{
+	Layout = "_Layout";
+	ViewData["title"] = "Add Blog";
+}
+<body>
+    <link rel="stylesheet" href="/editormd/lib/editormd.css" />
+	<div class="container justify-content-center" style="height:70%;">
+		<form class="row align-item-center" style="height:100%;">
+            <button id="send" class="col-12 btn btn-primary" type="submit">Send</button>
+            <input type="text" class="form-control col-12" placeholder="Title Here" id="name" />
+            <input type="text" class="form-control col-12" placeholder="Description Here" id="desc" />
+            <div id="editor" class="col-12"></div>
+        </form>
+    </div>
+
+</body>
+<script src="/editormd/lib/editormd.js"></script>
+<script>
+    $(function() {
+        editor = editormd("editor", {
+            path   : "/editormd/lib/",
+            saveHTMLToTextarea : true,
+            searchReplace : true,
+            htmlDecode : "style,script,iframe|on*", 
+            tex : true,
+        });
+        $("#trs").bind('click', function() {
+            console.log(editor.getMarkdown());
+            alert(editor.getMarkdown());
+        });
+        $("#send").bind('click', function(){
+            var name = document.getElementById("name").value.replace(new RegExp("\"","g"),"\\\"");
+		    var desc = document.getElementById("desc").value.replace(new RegExp("\"","g"),"\\\"");
+		    var body = encodeURIComponent(editor.getMarkdown());
+		    ajax("POST","/Blog/Insert",
+		    '{"name":"'+name+'","desc":"'+desc+'","body":"'+body+'"}',
+		    3000,function(r){
+			    if(r.responseText == 0){
+				    alert("发布成功");
+			    }else{
+				    alert("发布失败");
+			    }
+		    });
+		    return false;
+        })
+    });
+</script>
+
