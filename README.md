@@ -1,37 +1,37 @@
-![Èç¹ûÄúÃ»ÓÐ¿´µ½±¾Í¼,ÄúÓ¦¸Ã³¢ÊÔ·­Ç½²é¿´±¾¿â](https://github.com/DavidSciMeow/MeowBlog/blob/master/_gitstaticuse/Title.png)  
-### Ò»¸ö `¼«Æä` `ÇáÁ¿»¯` µÄ Asp `(.net6)` ²©¿Í¹ÜÀí¶Ë;  
+![å¦‚æžœæ‚¨æ²¡æœ‰çœ‹åˆ°æœ¬å›¾,æ‚¨åº”è¯¥å°è¯•ç¿»å¢™æŸ¥çœ‹æœ¬åº“](https://github.com/DavidSciMeow/MeowBlog/blob/master/_gitstaticuse/Title.png)  
+### ä¸€ä¸ª `æžå…¶` `è½»é‡åŒ–` çš„ Asp `(.net6)` åšå®¢ç®¡ç†ç«¯;  
 
-## 0.×îÐÂ¸üÐÂ
+## 0.æœ€æ–°æ›´æ–°
 
-//»¶Ó­¸÷Î»Ç°¶Ë¹¤³ÌÊ¦À´Éè¼ÆÒ³Ãæ  
-2022 03 18 ½« ./Properties/blog.json ÒÆ¶¯ÖÁ ./blog.json (³ÌÐò¸ùÄ¿Â¼),·½±ã²éÕÒ.  
-2022 03 20 ½« dllµÄMarkdownParser¸ü¸Ä³Éjs°æ±¾.²¢ÇÒÊÊÅäÁËmarkdown±à¼­Æ÷
+//æ¬¢è¿Žå„ä½å‰ç«¯å·¥ç¨‹å¸ˆæ¥è®¾è®¡é¡µé¢  
+2022 03 18 å°† ./Properties/blog.json ç§»åŠ¨è‡³ ./blog.json (ç¨‹åºæ ¹ç›®å½•),æ–¹ä¾¿æŸ¥æ‰¾.  
+2022 03 20 å°† dllçš„MarkdownParseræ›´æ”¹æˆjsç‰ˆæœ¬.å¹¶ä¸”é€‚é…äº†markdownç¼–è¾‘å™¨
 
-## 1.¼ò½é
+## 1.ç®€ä»‹
 
 ```csharp
-List<String> ÓÅµã = new(){
-	"Ç°¶ËÊ¹ÓÃÁËMarkdown¸»ÎÄ±¾½âÎöÆ÷,Ôö½øÁËÄúµÄ±àÐ´ÌåÑé."
-	"ÔËÐÐ¼òµ¥,ÇáÁ¿»¯²»ÐèÈÎºÎÆäËû×é¼þ.",
-	"ÊÊÅä²Ù×÷ÓÚMarkdownÓï·¨µÄ½âÎö.",
-	"Ö§³ÖÄÚº¯ÊýÖØÐ´.",
-	"Ö§³Ö±àÒëÊôÓÚ×Ô¼ºµÄ°²È«²©¿Í(ÑéÖ¤»úÖÆÖØÐ´)",
-	"Ö§³Ö×Ô¼º¸ü¸Ä×Ô¼ºµÄÇ°¶ËÄ£Ê½(ÑùÊ½ÖØÐ´)"
+List<String> ä¼˜ç‚¹ = new(){
+	"å‰ç«¯ä½¿ç”¨äº†Markdownå¯Œæ–‡æœ¬è§£æžå™¨,å¢žè¿›äº†æ‚¨çš„ç¼–å†™ä½“éªŒ."
+	"è¿è¡Œç®€å•,è½»é‡åŒ–ä¸éœ€ä»»ä½•å…¶ä»–ç»„ä»¶.",
+	"é€‚é…æ“ä½œäºŽMarkdownè¯­æ³•çš„è§£æž.",
+	"æ”¯æŒå†…å‡½æ•°é‡å†™.",
+	"æ”¯æŒç¼–è¯‘å±žäºŽè‡ªå·±çš„å®‰å…¨åšå®¢(éªŒè¯æœºåˆ¶é‡å†™)",
+	"æ”¯æŒè‡ªå·±æ›´æ”¹è‡ªå·±çš„å‰ç«¯æ¨¡å¼(æ ·å¼é‡å†™)"
 }
-List<String> ¼Æ»® = new(){
-	"Ç°¶ËÑùÊ½","ÊÊÅäsql·½Ê½ÔöÉ¾","Ôö¼Ó¶àºËÐÄÂß¼­"
+List<String> è®¡åˆ’ = new(){
+	"å‰ç«¯æ ·å¼","é€‚é…sqlæ–¹å¼å¢žåˆ ","å¢žåŠ å¤šæ ¸å¿ƒé€»è¾‘"
 }
 ```
 
-## 2.¸ß¼¶ÈËÔ±µ÷ÊÔÓÃÐÅÏ¢
-`sessionkeys`: [ isRoot:int {0} //ÓÃÓÚ¶Ô²éÊÇ·ñÊÇ²©Ö÷, loginTime //µÇÂ½Ê±¼ä ]  
-`sessionÓÐÐ§ÆÚ`: 1Ð¡Ê± //ÈçÐè¸ü¸ÄÇëÔÚPrograms.cs¸ü¸ÄºóÖØÐÂ±àÒë  
-`API»ØÖµ`: string:: / [result:int,errs:strings] //´ó¶àÊýAPIµÄ·µ»ØÖµÎª×Ö·û´®,¶øºóÊ¹ÓÃÔ­Éújs½âÎö  
-`¿ìËÙË÷ÒýÎÄ¼þ`: wwwroot/blogs/zlist.bloglist  
-> `ÆäËû¿É¸ü¸ÄÅäÖÃÒÑ¾­ÔÚÉèÖÃÎÄ¼þÖÐÁÐ³ö²¢×¢ÊÍ`  
-> `ÉèÖÃÎÄ¼þ¸´ÖÆÎ»ÖÃ /Properties/blog.json (Â·¾¶ÐèÒª¶Ô×¼)`  
+## 2.é«˜çº§äººå‘˜è°ƒè¯•ç”¨ä¿¡æ¯
+`sessionkeys`: [ isRoot:int {0} //ç”¨äºŽå¯¹æŸ¥æ˜¯å¦æ˜¯åšä¸», loginTime //ç™»é™†æ—¶é—´ ]  
+`sessionæœ‰æ•ˆæœŸ`: 1å°æ—¶ //å¦‚éœ€æ›´æ”¹è¯·åœ¨Programs.csæ›´æ”¹åŽé‡æ–°ç¼–è¯‘  
+`APIå›žå€¼`: string:: / [result:int,errs:strings] //å¤§å¤šæ•°APIçš„è¿”å›žå€¼ä¸ºå­—ç¬¦ä¸²,è€ŒåŽä½¿ç”¨åŽŸç”Ÿjsè§£æž  
+`å¿«é€Ÿç´¢å¼•æ–‡ä»¶`: wwwroot/blogs/zlist.bloglist  
+> `å…¶ä»–å¯æ›´æ”¹é…ç½®å·²ç»åœ¨è®¾ç½®æ–‡ä»¶ä¸­åˆ—å‡ºå¹¶æ³¨é‡Š`  
+> `è®¾ç½®æ–‡ä»¶å¤åˆ¶ä½ç½® /Properties/blog.json (è·¯å¾„éœ€è¦å¯¹å‡†)`  
 ```javascript
-//·¢ËÍ²©¿ÍÊ¹ÓÃµÄJson¸ñÊ½
+//å‘é€åšå®¢ä½¿ç”¨çš„Jsonæ ¼å¼
 {
 	"name":string,
 	"desc":string,
@@ -39,14 +39,3 @@ List<String> ¼Æ»® = new(){
 	"text":string,
 }
 ```
-
-## 3.¼òÒ×Ê¹ÓÃ·½·¨(µÈ´ý¸üÐÂ)
-> 2022Äê3ÔÂ28ÈÕ :   
->1. Folk±¾¿â Ê¹ÓÃVS2022´ò¿ª, 
->1. ¸ü¸ÄÖÁÑùÊ½·ûºÏÄúµÄÉóÃÀºó±àÒë
->1. ²âÊÔ, È·ÈÏ¹¦ÄÜÕý³£
->1. Ê¹ÓÃPublishÄ£Ê½·Ö·¢.
->1. Ê¹ÓÃNginx/Apache½øÐÐ´úÀíÄúÔÚÉèÖÃÖÐÌîÐ´µÄµØÖ·,²¢Æ¥ÅäÓòÃû.
->1. µ½²©¿ÍÄ¿Â¼ÏÂÔËÐÐ²©¿Í³ÌÐò. `dotnet ./MeowBlog`
->1. ³¢ÊÔÍâÍøÄÚÍø·ÃÎÊ²âÊÔ.
->1. Íê³É.
